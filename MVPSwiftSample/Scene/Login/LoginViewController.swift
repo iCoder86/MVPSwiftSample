@@ -29,8 +29,8 @@ class LoginViewController: UIViewController, LoginView {
     }
     
     @IBAction func loginButtonPressed() {
-        let loginParamter = LoginParamters(loginMobileNumber: txtMobile.text!)
-        presenter.loginButtonPressed(paramter: loginParamter)
+        let loginParameter = LoginParamters(loginMobileNumber: txtMobile.text!)
+        presenter.loginButtonPressed(loginParameter: loginParameter)
     }
     
     // MARK: - VerifyViewControllerDelegate
@@ -43,3 +43,4 @@ class LoginViewController: UIViewController, LoginView {
         print("updateViewOnFailVerify")
     }
 }
+

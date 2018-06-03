@@ -12,10 +12,12 @@ class VerifyViewController: UIViewController, VerifyView {
 
     var presenter: VerifyPresenter!
     var configurator : VerifyConfigurator!
+    @IBOutlet weak var lblMobileNumber: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configurator.configure(verifyViewController: self)
+        presenter.viewDidLoad()
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,5 +30,9 @@ class VerifyViewController: UIViewController, VerifyView {
     
     @IBAction func cancelAction() {
         presenter.cancelVerifyButtonPressed()
+    }
+    
+    func displayMobileNumber(mobile: String) {
+        lblMobileNumber.text = mobile
     }
 }

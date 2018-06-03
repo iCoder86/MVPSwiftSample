@@ -9,27 +9,28 @@
 import UIKit
 
 protocol LoginViewRouter: ViewRouter {
-    func showVerifyView(verifyPresenterDelegate: VerifyPresenterDelegate)
+    func showVerifyView(loginParameter: LoginParamters, verifyPresenterDelegate: VerifyPresenterDelegate)
 }
 
 class LoginViewRouterImplementation: LoginViewRouter {
+    fileprivate weak var loginViewController: LoginViewController?
     
     fileprivate weak var verifyPresenterDelegate: VerifyPresenterDelegate?
-    fileprivate weak var loginViewController: LoginViewController?
+    fileprivate var loginParameter : LoginParamters!
     
     init(loginViewController: LoginViewController) {
         self.loginViewController = loginViewController
     }
     
-    func showVerifyView(verifyPresenterDelegate: VerifyPresenterDelegate) {
+    func showVerifyView(loginParameter: LoginParamters ,verifyPresenterDelegate: VerifyPresenterDelegate) {
         self.verifyPresenterDelegate = verifyPresenterDelegate
+        self.loginParameter = loginParameter
         loginViewController?.performSegue(withIdentifier: "VerifyViewController", sender: nil)
     }
     
     func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let addBookViewController = segue.destination as? VerifyViewController {
-            addBookViewController.configurator = VerifyConfiguratorImplementation(verifyPresenterDelegate: verifyPresenterDelegate)
-            
+        if let verifyViewController = segue.destination as? VerifyViewController {
+            verifyViewController.configurator = VerifyConfiguratorImplementation(loginParameter: loginParameter, verifyPresenterDelegate: verifyPresenterDelegate!)
         }
     }
 }

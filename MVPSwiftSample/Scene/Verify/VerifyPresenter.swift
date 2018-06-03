@@ -9,7 +9,7 @@
 import Foundation
 
 protocol VerifyView: class {
-    
+    func displayMobileNumber(mobile:String)
 }
 
 protocol VerifyPresenterDelegate: class {
@@ -19,18 +19,29 @@ protocol VerifyPresenterDelegate: class {
 
 protocol VerifyPresenter {
     var router : VerifyViewRouter { get }
+    func viewDidLoad()
     func verifyButtonPressed()
     func cancelVerifyButtonPressed()
 }
 
 class VerifyPresenterImplementation: VerifyPresenter {
+    fileprivate let loginParameter: LoginParamters
     fileprivate weak var delegate: VerifyPresenterDelegate?
     private(set) var router: VerifyViewRouter
+    fileprivate weak var view:VerifyView?
     
-    init(router: VerifyViewRouter,
+    init(view:VerifyView,
+         loginParameter:LoginParamters,
+         router: VerifyViewRouter,
          delegate: VerifyPresenterDelegate) {
+        self.view = view
         self.router = router
+        self.loginParameter = loginParameter
         self.delegate = delegate
+    }
+    
+    func viewDidLoad() {
+        view?.displayMobileNumber(mobile: loginParameter.loginMobileNumber)
     }
     
     func verifyButtonPressed() {

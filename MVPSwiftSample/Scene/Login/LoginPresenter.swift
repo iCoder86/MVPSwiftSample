@@ -20,7 +20,7 @@ protocol LoginPresenterDelegate: class {
 
 protocol LoginPresenter {
     var router: LoginViewRouter { get }
-    func loginButtonPressed(paramter: LoginParamters)
+    func loginButtonPressed(loginParameter: LoginParamters)
 }
 
 class LoginPresenterImplementation: LoginPresenter,VerifyPresenterDelegate {
@@ -32,22 +32,18 @@ class LoginPresenterImplementation: LoginPresenter,VerifyPresenterDelegate {
         self.router = router
     }
 
-    func loginButtonPressed(paramter: LoginParamters) {
-        print("Login Mobile Number: \(paramter.loginMobileNumber)")
-        router.showVerifyView(verifyPresenterDelegate: self)
+    func loginButtonPressed(loginParameter: LoginParamters) {
+        router.showVerifyView(loginParameter: loginParameter, verifyPresenterDelegate: self)
     }
     
     // MARK: - VerifyPresenterDelegate
     
     func verifySuccess() {
-        print("verifySuccess")
         view?.updateViewOnSuccessVerify()
     }
     
     func verifyFail() {
-        print("verifyFail")
         view?.updateViewOnFailVerify()
     }
-
 }
 

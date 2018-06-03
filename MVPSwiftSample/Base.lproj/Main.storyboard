@@ -84,10 +84,20 @@
                                     <action selector="cancelAction" destination="SJ9-Nj-BFM" eventType="touchUpInside" id="vbh-SL-Mds"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rCq-JK-hPL">
+                                <rect key="frame" x="139" y="155" width="92" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Lts-Hu-eNC"/>
                     </view>
+                    <connections>
+                        <outlet property="lblMobileNumber" destination="rCq-JK-hPL" id="b0G-vN-Iub"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aLD-Qc-UP0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

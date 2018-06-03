@@ -13,16 +13,21 @@ protocol VerifyConfigurator {
 }
 
 class VerifyConfiguratorImplementation: VerifyConfigurator {
-    
+    let loginParameter : LoginParamters
     var verifyPresenterDelegate: VerifyPresenterDelegate?
     
-    init(verifyPresenterDelegate: VerifyPresenterDelegate?) {
+    init(loginParameter:LoginParamters) {
+        self.loginParameter = loginParameter
+    }
+    
+    init(loginParameter:LoginParamters, verifyPresenterDelegate: VerifyPresenterDelegate?) {
+        self.loginParameter = loginParameter
         self.verifyPresenterDelegate = verifyPresenterDelegate
     }
     
     func configure(verifyViewController: VerifyViewController) {
         let router = VerifyViewRouterImplementation(verifyViewController: verifyViewController)
-        let presenter = VerifyPresenterImplementation(router: router, delegate: verifyPresenterDelegate!)
+        let presenter = VerifyPresenterImplementation(view:verifyViewController, loginParameter: loginParameter, router: router, delegate: verifyPresenterDelegate!)
         
         verifyViewController.presenter = presenter
     }
